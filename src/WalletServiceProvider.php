@@ -28,7 +28,7 @@ class WalletServiceProvider extends ServiceProvider
 
     protected function registerRoutes(): void
     {
-        if (config('sanctum.routes') === false) {
+        if (config('wallet.apple.routes') === false) {
             return;
         }
 
