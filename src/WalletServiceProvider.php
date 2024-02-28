@@ -2,6 +2,7 @@
 
 namespace Pashkevich\Wallet;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Pashkevich\Wallet\Contracts\Factory;
 use Illuminate\Contracts\Foundation\Application;
@@ -29,7 +30,9 @@ class WalletServiceProvider extends ServiceProvider
             return;
         }
 
-        $this->loadRoutesFrom(__DIR__ . '/../routes/apple.php');
+        Route::group(['as' => 'wallet.apple.'], function () {
+            $this->loadRoutesFrom(__DIR__ . '/../routes/apple.php');
+        });
     }
 
     protected function registerPublishing(): void
