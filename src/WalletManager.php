@@ -25,7 +25,7 @@ class WalletManager extends Manager implements Factory
         return new GoogleWallet($this->config->get('wallet.google'));
     }
 
-    public function getDefaultDriver()
+    public function getDefaultDriver(): void
     {
         throw new InvalidArgumentException('No Wallet provider was specified.');
     }
