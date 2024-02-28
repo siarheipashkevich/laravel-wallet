@@ -11,7 +11,7 @@ class WalletServiceProvider extends ServiceProvider implements DeferrableProvide
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/wallet.php', 'wallet');
+        $this->mergeConfigFrom(__DIR__ . '/../config/wallet.php', 'wallet');
 
         $this->app->singleton(Factory::class, function (Application $app) {
             return new WalletManager($app);
