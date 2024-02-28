@@ -62,7 +62,7 @@ abstract class WebhookHandler
         // Return Matching Passes (200)
         return [
             'status' => 200,
-            'payload' => [
+            'content' => [
                 'serialNumbers' => ['111', '222'],
                 'lastUpdated' => '1351981923',
             ],

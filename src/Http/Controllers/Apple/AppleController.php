@@ -3,6 +3,8 @@
 namespace Pashkevich\Wallet\Http\Controllers\Apple;
 
 use Illuminate\Http\{Request, Response};
+use Illuminate\Support\Facades\{App, Config};
+use Pashkevich\Wallet\Wallets\Apple\Handlers\WebhookHandler;
 
 class AppleController
 {
@@ -12,11 +14,19 @@ class AppleController
         string $passTypeIdentifier,
         string $serialNumber,
     ): Response {
-        $authenticationToken = $this->getAuthenticationToken($request);
+        /** @var WebhookHandler $handler */
+        $handler = App::make(Config::get('wallet.apple.webhook_handler'));
 
-        $pushToken = $request->get('pushToken');
+        $handler->setAuthenticationToken($this->getAuthenticationToken($request));
 
-        return new Response();
+        $status = $handler->registerPass(
+            $deviceLibraryIdentifier,
+            $passTypeIdentifier,
+            $serialNumber,
+            $request->get('pushToken'),
+        );
+
+        return new Response(status: $status);
     }
 
     public function unregisterPass(
@@ -25,9 +35,14 @@ class AppleController
         string $passTypeIdentifier,
         string $serialNumber,
     ): Response {
-        $authenticationToken = $this->getAuthenticationToken($request);
+        /** @var WebhookHandler $handler */
+        $handler = App::make(Config::get('wallet.apple.webhook_handler'));
 
-        return new Response();
+        $handler->setAuthenticationToken($this->getAuthenticationToken($request));
+
+        $status = $handler->unregisterPass($deviceLibraryIdentifier, $passTypeIdentifier, $serialNumber);
+
+        return new Response(status: $status);
     }
 
     public function getUpdatablePasses(
@@ -35,9 +50,16 @@ class AppleController
         string $deviceLibraryIdentifier,
         string $passTypeIdentifier,
     ): Response {
-        $passesUpdatedSince = $request->query('passesUpdatedSince');
+        /** @var WebhookHandler $handler */
+        $handler = App::make(Config::get('wallet.apple.webhook_handler'));
 
-        return new Response();
+        $response = $handler->getUpdatablePasses(
+            $deviceLibraryIdentifier,
+            $passTypeIdentifier,
+            $request->query('passesUpdatedSince'),
+        );
+
+        return new Response($response['content'] ?? '', $response['status']);
     }
 
     public function getUpdatedPass(Request $request, string $passTypeIdentifier, string $serialNumber): Response
@@ -49,7 +71,10 @@ class AppleController
 
     public function log(Request $request): Response
     {
-        $log = $request->all();
+        /** @var WebhookHandler $handler */
+        $handler = App::make(Config::get('wallet.apple.webhook_handler'));
+
+        $handler->log($request->all());
 
         return new Response();
     }
