@@ -10,7 +10,7 @@ class WalletServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-//        $this->mergeConfigFrom(__DIR__ . '/../config/wallet.php', 'wallet');
+        $this->mergeConfigFrom(__DIR__ . '/../config/wallet.php', 'wallet');
 
         $this->app->singleton(Factory::class, function (Application $app) {
             return new WalletManager($app);
@@ -19,11 +19,8 @@ class WalletServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->publishes([
-            __DIR__ . '/../config/wallet.php' => config_path('wallet.php'),
-        ]);
-
         $this->registerRoutes();
+        $this->registerPublishing();
     }
 
     protected function registerRoutes(): void
@@ -33,5 +30,14 @@ class WalletServiceProvider extends ServiceProvider
         }
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/apple.php');
+    }
+
+    protected function registerPublishing(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../config/wallet.php' => $this->app->configPath('wallet.php'),
+            ], 'wallet-config');
+        }
     }
 }
