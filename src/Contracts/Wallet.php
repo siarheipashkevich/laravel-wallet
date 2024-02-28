@@ -4,5 +4,5 @@ namespace Pashkevich\Wallet\Contracts;
 
 interface Wallet
 {
-    // methods
+    public function createPass(Pass $pass): void;
 }
