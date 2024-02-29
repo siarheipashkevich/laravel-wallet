@@ -7,6 +7,16 @@ return [
         'wwdr_certificate_path' => env('WALLET_APPLE_WWDR_CERTIFICATE_PATH'),
 
         'webhook_handler' => \Pashkevich\Wallet\Wallets\Apple\Handlers\EmptyWebhookHandler::class,
+
+        'apns' => [
+            'certificate_path' => env('WALLET_APPLE_APNS_CERTIFICATE_PATH'),
+            'password' => env('WALLET_APPLE_APNS_PASSWORD'),
+        ],
     ],
-    'google' => [],
+
+    'google' => [
+        'gcm' => [
+            'key' => env('WALLET_GOOGLE_GCM_KEY'),
+        ],
+    ],
 ];
