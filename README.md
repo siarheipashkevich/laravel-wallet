@@ -6,7 +6,7 @@
 <a href="https://packagist.org/packages/pashkevich/laravel-wallet"><img src="https://img.shields.io/packagist/l/pashkevich/laravel-wallet" alt="License"></a>
 
 > [!WARNING]
-> under development
+> The package is currently under development.
 
 ## Installation
 
