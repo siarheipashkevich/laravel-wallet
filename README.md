@@ -15,7 +15,7 @@ composer require pashkevich/laravel-wallet
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-wallet"
+php artisan vendor:publish --tag=laravel-wallet
 ```
 
 This is the contents of the file that will be published at `config/wallet.php`:
