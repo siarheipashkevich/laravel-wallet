@@ -5,7 +5,8 @@
 <a href="https://packagist.org/packages/pashkevich/laravel-wallet"><img src="https://img.shields.io/packagist/v/pashkevich/laravel-wallet" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/pashkevich/laravel-wallet"><img src="https://img.shields.io/packagist/l/pashkevich/laravel-wallet" alt="License"></a>
 
-under development
+> [!WARNING]
+> under development
 
 ## Installation
 
