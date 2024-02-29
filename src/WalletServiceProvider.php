@@ -39,7 +39,7 @@ class WalletServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/wallet.php' => $this->app->configPath('wallet.php'),
+                __DIR__ . '/../config/wallet.php' => config_path('wallet.php'),
             ], 'wallet-config');
         }
     }
