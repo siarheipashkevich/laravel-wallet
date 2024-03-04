@@ -8,8 +8,8 @@ class AppleWallet implements Wallet
 {
     public function __construct(protected array $config) {}
 
-    public function createPass(Pass $pass): void
+    public function createPass(Pass $pass): mixed
     {
-        //
+        return null;
     }
 }

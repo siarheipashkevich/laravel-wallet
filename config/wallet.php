@@ -6,7 +6,9 @@ return [
         'certificate_password' => env('WALLET_APPLE_CERTIFICATE_PASSWORD'),
         'wwdr_certificate_path' => env('WALLET_APPLE_WWDR_CERTIFICATE_PATH'),
 
-        'webhook_handler' => \Pashkevich\Wallet\Wallets\Apple\Handlers\EmptyWebhookHandler::class,
+        'webhook' => [
+            'handler' => \Pashkevich\Wallet\Handlers\Apple\EmptyWebhookHandler::class,
+        ],
 
         'apns' => [
             'certificate_path' => env('WALLET_APPLE_APNS_CERTIFICATE_PATH'),

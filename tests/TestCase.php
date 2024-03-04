@@ -2,10 +2,15 @@
 
 namespace Pashkevich\Wallet\Tests;
 
-use Orchestra\Testbench\Concerns\WithWorkbench;
+use Pashkevich\Wallet\WalletServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class TestCase extends OrchestraTestCase
 {
-    use WithWorkbench;
+    protected function getPackageProviders($app): array
+    {
+        return [
+            WalletServiceProvider::class,
+        ];
+    }
 }
