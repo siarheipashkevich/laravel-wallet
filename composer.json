@@ -19,7 +19,9 @@
         }
     ],
     "require": {
-        "php": "^8.2"
+        "php": "^8.2",
+        "firebase/php-jwt": "^6.10",
+        "google/apiclient": "^2.15"
     },
     "require-dev": {
         "orchestra/testbench": "^8.21"
@@ -35,6 +37,7 @@
         }
     },
     "scripts": {
+        "pre-autoload-dump": "Google\\Task\\Composer::cleanup",
         "test": "vendor/bin/phpunit"
     },
     "extra": {
@@ -42,7 +45,10 @@
             "providers": [
                 "Pashkevich\\Wallet\\WalletServiceProvider"
             ]
-        }
+        },
+        "google/apiclient-services": [
+            "Walletobjects"
+        ]
     },
     "config": {
         "sort-packages": true

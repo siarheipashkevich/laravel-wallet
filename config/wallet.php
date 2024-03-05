@@ -17,6 +17,8 @@ return [
     ],
 
     'google' => [
+        'application_credentials_path' => env('WALLET_GOOGLE_APPLICATION_CREDENTIALS_PATH'),
+        'issuer_id' => env('WALLET_GOOGLE_ISSUER_ID'),
         'gcm' => [
             'key' => env('WALLET_GOOGLE_GCM_KEY'),
         ],
