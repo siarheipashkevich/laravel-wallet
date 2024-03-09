@@ -2,15 +2,23 @@
 
 namespace Pashkevich\Wallet\Tests;
 
-use Pashkevich\Wallet\WalletServiceProvider;
+use Illuminate\Foundation\Application;
+use Illuminate\Contracts\Config\Repository;
+use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class TestCase extends OrchestraTestCase
 {
-    protected function getPackageProviders($app): array
+    use WithWorkbench;
+
+    /**
+     * @param Application $app
+     */
+    protected function defineEnvironment($app): void
     {
-        return [
-            WalletServiceProvider::class,
-        ];
+        /** @var Repository $config */
+        $config = $app->make(Repository::class);
+
+        $config->set('wallet.google.application_credentials_path', '');
     }
 }
